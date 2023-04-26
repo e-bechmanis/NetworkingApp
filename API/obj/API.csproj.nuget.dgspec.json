@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\yelen\\OneDrive\\Документы\\GITHUB\\NetworkingApp\\API\\API.csproj": {}
+    "c:\\Users\\yelen\\OneDrive\\Документы\\GITHUB\\NetworkingApp\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\yelen\\OneDrive\\Документы\\GITHUB\\NetworkingApp\\API\\API.csproj": {
+    "c:\\Users\\yelen\\OneDrive\\Документы\\GITHUB\\NetworkingApp\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yelen\\OneDrive\\Документы\\GITHUB\\NetworkingApp\\API\\API.csproj",
+        "projectUniqueName": "c:\\Users\\yelen\\OneDrive\\Документы\\GITHUB\\NetworkingApp\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\yelen\\OneDrive\\Документы\\GITHUB\\NetworkingApp\\API\\API.csproj",
+        "projectPath": "c:\\Users\\yelen\\OneDrive\\Документы\\GITHUB\\NetworkingApp\\API\\API.csproj",
         "packagesPath": "C:\\Users\\yelen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yelen\\OneDrive\\Документы\\GITHUB\\NetworkingApp\\API\\obj\\",
+        "outputPath": "c:\\Users\\yelen\\OneDrive\\Документы\\GITHUB\\NetworkingApp\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\yelen\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -37,6 +37,16 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
