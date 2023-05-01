@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using API.data;
 using API.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
+    [Authorize]
     public class UsersController : BaseApiController
     {
         // conventional to use _ for private variables in c#
@@ -15,6 +17,8 @@ namespace API.Controllers
             _context = context;
         }
 
+        // This route will be accessible to all users
+        [AllowAnonymous]
         // Endpoints should always have Http method to make a request
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
