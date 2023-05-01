@@ -5,9 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")] // GET /api/users
-    public class UsersController : ControllerBase
+    public class UsersController : BaseApiController
     {
         // conventional to use _ for private variables in c#
         private readonly DataContext _context;
