@@ -1,8 +1,5 @@
 
 API/bin/
 API/networkingapp.db-wal
-API/bin/Debug/net7.0/API.dll
 API/networkingapp.db-shm
-API/obj/Debug/net7.0/API.assets.cache
-
-API/bin/Debug/net7.0/API.deps.json
+API/obj/Debug/
