@@ -1,9 +1,12 @@
 using System.Security.Cryptography;
 using System.Text;
 using API.data;
+using API.DTOs;
 using API.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API.Controllers
 {
@@ -16,15 +19,21 @@ namespace API.Controllers
         }
 
         [HttpPost("register")] //api/account/register
-        public async Task<ActionResult<AppUser>> Register(string username, string password)
+
+        //API controller will automatically bind Register method with properties of registerDto object
+        public async Task<ActionResult<AppUser>> Register(RegisterDto registerDto)
         {
+            // checking if the username for the new user is already taken
+            if (await UserExists(registerDto.Username)) return BadRequest("Username already exists");
+
             // adding 'using' keyword, so that we dispose of this class automatically when we don't need it anymore
             using var hmac = new HMACSHA512();
 
+            // If username is not taken, create a new user
             var user = new AppUser
             {
-                UserName = username,
-                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password)),
+                UserName = registerDto.Username.ToLower(),
+                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
                 PasswordSalt = hmac.Key
             };
 
@@ -32,6 +41,11 @@ namespace API.Controllers
             await _context.SaveChangesAsync();
 
             return user;
+        }
+
+        private async Task<bool> UserExists(string username)
+        {
+            return await _context.Users.AnyAsync(user => user.UserName == username.ToLower());
         }
     }
 }
