@@ -6,6 +6,7 @@ using API.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API.Controllers
@@ -39,6 +40,29 @@ namespace API.Controllers
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
+
+            return user;
+        }
+
+        [HttpPost("login")] //api/account/login
+        public async Task<ActionResult<AppUser>> Login(LoginDto loginDto)
+        {
+            // check if user exists in db
+            // FirstOrDefaultAsync vs SingleOrDefault <-- the 2nd will throw if there is more than 1 elem matching the query
+            var user = await _context.Users.FirstOrDefaultAsync(res => 
+                res.UserName == loginDto.Username);
+
+            // throw if user doesn't exist
+            if (user == null) return Unauthorized("Invalid username");
+
+            using var hmac = new HMACSHA512(user.PasswordSalt);
+
+            var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
+
+            for (int i = 0; i < computedHash.Length; i++)
+            {
+                if (computedHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid password");
+            }
 
             return user;
         }
