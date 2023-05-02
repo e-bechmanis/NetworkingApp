@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../_services/account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -10,23 +11,21 @@ export class NavComponent implements OnInit {
   model: any = {}
 
   // making it public, so that account service can be accessed in the template
-  constructor(public accountService: AccountService) { }
+  constructor(public accountService: AccountService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   login(){
     this.accountService.login(this.model).subscribe({
-      next: res => {
-        console.log(res);
-  
-      },
+      next: () => this.router.navigateByUrl('/mentors'),
       error: err => console.log(err)
     })
   }
 
   logout(){
     this.accountService.logout();
+    this.router.navigateByUrl('/');
   }
 
 }

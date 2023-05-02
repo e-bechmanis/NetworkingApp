@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="#">IT newbs networking</a>
+    <a class="navbar-brand" routerLink="/" routerLinkActive="active"
+      >IT newbs networking</a
+    >
     <button
       class="navbar-toggler"
       type="button"
@@ -18,13 +20,19 @@
         *ngIf="accountService.currentUser$ | async"
       >
         <li class="nav-item">
-          <a class="nav-link" href="#">Matches</a>
+          <a class="nav-link" routerLink="/mentors" routerLinkActive="active"
+            >Matches</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Mentors</a>
+          <a class="nav-link" routerLink="/lists" routerLinkActive="active"
+            >Mentors</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Messages</a>
+          <a class="nav-link" routerLink="/messages" routerLinkActive="active"
+            >Messages</a
+          >
         </li>
       </ul>
 
