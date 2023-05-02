@@ -9,13 +9,21 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { MentorListComponent } from './mentors/mentor-list/mentor-list.component';
+import { MentorDetailComponent } from './mentors/mentor-detail/mentor-detail.component';
+import { ListsComponent } from './lists/lists.component';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    MentorListComponent,
+    MentorDetailComponent,
+    ListsComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserAnimationsModule,

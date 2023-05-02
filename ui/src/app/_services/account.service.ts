@@ -18,6 +18,7 @@ export class AccountService {
 
   login(model: any){
     return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
+      // piping so that we can apply logic to an Observable before it gets subscribed to
       map((response: User) => {
         const user = response;
         if(user){
@@ -26,6 +27,17 @@ export class AccountService {
         }
       }
     ))
+  }
+
+  register(model: any){
+    return this.http.post<User>(this.baseUrl + 'account/register', model).pipe(
+      map(user => {
+        if(user){
+          localStorage.setItem('user', JSON.stringify(user));
+          this.CurrentUserSource.next(user);
+        }
+      })
+    )
   }
 
   setCurrentUser(user: User){
