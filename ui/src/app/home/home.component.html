@@ -2,15 +2,17 @@
   <div *ngIf="!registerMode" style="text-align: center">
     <h1>Find your mentor</h1>
     <p class="lead">
-      Come on in to find your mentor! Al you need to do is sign up.. <br />
+      Come on in to find your mentor! All you need to do is sign up.. <br />
       All mentors are volunteers, so you may need to wait for one to be come
-      available.
+      available. <br />
+      However, they are motivated to make you better in coding and share their
+      knowledge and experience.
     </p>
     <div class="text-center">
       <button class="btn btn-primary btn-lg me-2" (click)="registerToggle()">
         Register
       </button>
-      <button class="btn btn-primary btn-lg">Learn more</button>
+      <button class="btn btn-secondary btn-lg">Learn more</button>
     </div>
   </div>
 
@@ -22,5 +24,9 @@
         ></app-register>
       </div>
     </div>
+  </div>
+
+  <div class="text-center">
+    <img src="./assets/—Pngtree—business woman working on computer_5500251.png" alt="woman coder" width="500" [ngStyle]="trans">
   </div>
 </div>
