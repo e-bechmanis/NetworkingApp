@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
 import { User } from '../_models/user';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
-
-  baseUrl = "https://localhost:5001/api/"
+  baseUrl = environment.apiUrl;
   // User | null is a union type, where a thing can be of 1 or more types
   private CurrentUserSource = new BehaviorSubject<User | null>(null);
   // it is a convention to user $ to signify an Observable
