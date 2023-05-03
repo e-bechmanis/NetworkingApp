@@ -4,17 +4,14 @@ using API.data;
 using API.DTOs;
 using API.Entities;
 using API.Interfaces;
-using API.Services;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API.Controllers
 {
     public class AccountController : BaseApiController
     {
+        // conventional to use _ for private variables in c#
         private readonly DataContext _context;
         private readonly ITokenService _tokenService;
         public AccountController(DataContext context, ITokenService tokenService)

@@ -18,6 +18,8 @@ namespace API.Extensions
             // AddSingleton <-- token will reside in-memory for the entire length of app lifetime. Caching service would be a use-case
             // Recommended to add interfaces, because it's easier to test against interfaces
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             return services;
         }
