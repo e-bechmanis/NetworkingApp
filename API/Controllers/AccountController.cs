@@ -54,8 +54,9 @@ namespace API.Controllers
         {
             // check if user exists in db
             // FirstOrDefaultAsync vs SingleOrDefault <-- the 2nd will throw if there is more than 1 elem matching the query
-            var user = await _context.Users.FirstOrDefaultAsync(res => 
-                res.UserName == loginDto.Username);
+            var user = await _context.Users
+                .Include(p => p.Photos)
+                .FirstOrDefaultAsync(res => res.UserName == loginDto.Username);
 
             // throw if user doesn't exist
             if (user == null) return Unauthorized("Invalid username");
@@ -72,7 +73,8 @@ namespace API.Controllers
             return new UserDto
             {
                 Username = user.UserName,
-                Token = _tokenService.CreateToken(user)
+                Token = _tokenService.CreateToken(user),
+                PhotoUrl = user.Photos.FirstOrDefault(x => x.IsProfilePhoto)?.Url
             };
         }
 
