@@ -19,6 +19,7 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { MentorCardComponent } from './mentors/mentor-card/mentor-card.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
+import { MentorsEditComponent } from './mentors/mentors-edit/mentors-edit.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
     TestErrorComponent,
     NotFoundComponent,
     ServerErrorComponent,
-    MentorCardComponent
+    MentorCardComponent,
+    MentorsEditComponent
   ],
   imports: [
     BrowserAnimationsModule,
