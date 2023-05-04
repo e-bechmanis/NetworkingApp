@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs';
 import { Mentor } from 'src/app/_models/mentor';
@@ -12,6 +13,12 @@ import { MentorsService } from 'src/app/_services/mentors.service';
   styleUrls: ['./mentors-edit.component.css']
 })
 export class MentorsEditComponent implements OnInit {
+  @ViewChild('editForm') editForm: NgForm | undefined;
+  @HostListener('window:beforeunload', ['$event']) unloadNotification($event:any){
+    if(this.editForm?.dirty){
+      $event.returnValue = true;
+    }
+  }
   mentor: Mentor | undefined;
   user: User | null = null;
 
@@ -33,8 +40,11 @@ export class MentorsEditComponent implements OnInit {
   }
 
   updateMentor(){
-    console.log(this.mentor);
-    this.toastr.success('Profile updated successfully');
+    this.mentorService.updateMentor(this.editForm?.value).subscribe({
+      next: () => {
+        this.toastr.success('Profile updated successfully');
+        this.editForm?.reset(this.mentor);
+      }
+    });
   }
-
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Mentor } from 'src/app/_models/mentor';
 import { MentorsService } from 'src/app/_services/mentors.service';
 
@@ -8,18 +9,12 @@ import { MentorsService } from 'src/app/_services/mentors.service';
   styleUrls: ['./mentor-list.component.css']
 })
 export class MentorListComponent implements OnInit {
-  mentors: Mentor[] = []
+  mentors$: Observable<Mentor[]> | undefined;
 
   constructor(private mentorService: MentorsService) { }
 
   ngOnInit(): void {
-    this.loadMentors();
-  }
-
-  loadMentors(){
-    this.mentorService.getMentors().subscribe({
-      next: mentors => this.mentors = mentors
-    })
+    this.mentors$ = this.mentorService.getMentors();
   }
 
 }
