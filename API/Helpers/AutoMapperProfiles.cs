@@ -15,6 +15,7 @@ namespace API.Helpers
                     opt => opt.MapFrom(src => src.Stack.FirstOrDefault(x => x.CanMentor).CanMentor));
             CreateMap<Photo, PhotoDto>();
             CreateMap<Stack, StackDto>();
+            CreateMap<MemberUpdateDto, AppUser>();
         }
     }
 }
