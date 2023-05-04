@@ -1,0 +1,109 @@
+<img
+  src="/assets/Lovepik_com-400671169-geometric-lines.png"
+  width="700"
+  alt="Geometry Png vectors by Lovepik.com"
+  class="mentor-idea-img"
+/>
+<div class="row" *ngIf="mentor">
+  <div class="col-3">
+    <h1>Your profile</h1>
+  </div>
+  <div class="col-9">
+    <div class="alert alert-info" *ngIf="editForm.dirty">
+      <p>
+        <strong>Information: </strong>You have made changes. Any unsaved changes
+        will be lost
+      </p>
+    </div>
+  </div>
+  <div class="col-3">
+    <div class="card">
+      <img
+        src="{{ mentor.photoUrl || './assets/user.jpg' }}"
+        alt="{{ mentor.knownAs }}"
+        class="card-img-top rounded-circle"
+      />
+      <div class="card-body">
+        <div>{{ mentor.city }}, {{ mentor.country }}</div>
+        <span class="badge bg-primary me-1"
+          >{{ mentor.yearsOfExperience }} years in IT</span
+        >
+        <span *ngIf="mentor.isMentor" class="badge bg-info">I am a mentor</span>
+        <p class="mb-3"></p>
+        <div>
+          <small><strong>Last active: </strong>{{ mentor.lastActive }}</small>
+        </div>
+        <div>
+          <small><strong>Mentor since: </strong>{{ mentor.created }}</small>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button
+          class="btn btn-success col-12"
+          [disabled]="!editForm.dirty"
+          form="editForm"
+        >
+          Save changes
+        </button>
+      </div>
+    </div>
+    <div class="card mt-2 pt-2 pb-2">
+      <div class="card-body">
+        <h5 class="text-light">I can help with</h5>
+        <div *ngFor="let skill of mentor.stack">
+          <div *ngIf="skill.canMentor">
+            <h3>
+              <span class="badge bg-info badge-lg">{{
+                skill.description
+              }}</span>
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-9">
+    <tabset class="member-tabset">
+      <tab heading="About {{ mentor.knownAs }}">
+        <form #editForm="ngForm" id="editForm" (ngSubmit)="updateMentor()">
+          <h4 class="mt2">Description</h4>
+          <textarea
+            class="form-control"
+            [(ngModel)]="mentor.introduction"
+            name="introduction"
+            rows="6"
+          ></textarea>
+          <h4 class="mt2">Looking For</h4>
+          <textarea
+            class="form-control"
+            [(ngModel)]="mentor.lookingFor"
+            name="lookingFor"
+            rows="6"
+          ></textarea>
+          <h4 class="mt2">Stack</h4>
+          <p>Stack update form will be here</p>
+          <h4 class="mt2">Location Details:</h4>
+          <div class="d-flex flex-row align-items-center">
+            <label for="city">City: </label>
+            <input
+              type="text"
+              [(ngModel)]="mentor.city"
+              name="city"
+              class="form-control mx-2"
+            />
+            <label for="city">Country: </label>
+            <input
+              type="text"
+              [(ngModel)]="mentor.country"
+              name="country"
+              class="form-control mx-2"
+            />
+          </div>
+        </form>
+      </tab>
+      <tab heading="Upload snippets/photos">
+        <p>Upload functionality will be here</p>
+      </tab>
+    </tabset>
+  </div>
+</div>
