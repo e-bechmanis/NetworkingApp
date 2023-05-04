@@ -1,0 +1,34 @@
+.rounded-circle {
+    margin: 25px;
+    width: 60%;
+}
+
+.card-body {
+    padding: 0 25px;
+}
+
+.card-footer {
+    padding: 15px 15px;
+    border-top: none;
+}
+
+.mentor-det-img{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.mentor-idea-img{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.ngx-gallery { 
+    display: inline-block; 
+    margin-bottom: 20px; 
+}
+
+.card-body{
+    color:rgba(0, 0, 0, 0.711) !important;
+}

@@ -1,1 +1,60 @@
-<h1>{{mentor?.knownAs}}</h1>
+<img
+  src="/assets/Lovepik_com-400671169-geometric-lines.png"
+  width="700"
+  alt="Geometry Png vectors by Lovepik.com"
+  class="mentor-idea-img"
+/>
+<div class="row" *ngIf="mentor">
+  <div class="col-3">
+    <div class="card">
+      <img
+        src="{{ mentor.photoUrl || './assets/user.jpg' }}"
+        alt="{{ mentor.knownAs }}"
+        class="card-img-top rounded-circle"
+      />
+      <div class="card-body">
+        <div>{{ mentor.city }}, {{ mentor.country }}</div>
+        <span class="badge bg-primary me-1"
+          >{{ mentor.yearsOfExperience }} years in IT</span
+        >
+        <span *ngIf="mentor.isMentor" class="badge bg-info">I am a mentor</span>
+        <p class="mb-3"></p>
+        <div><small><strong>Last active: </strong>{{ mentor.lastActive }}</small></div>
+        <div><small><strong>Mentor since: </strong>{{ mentor.created }}</small></div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-success col-12">Message {{ mentor.knownAs }}</button>
+      </div>
+    </div>
+    <div class="card mt-2 pt-2 pb-2">
+      <div class="card-body">
+        <h5 class="text-light">I can help with</h5>
+        <div *ngFor="let skill of mentor.stack">
+          <div *ngIf="skill.canMentor">
+            <h3><span class="badge bg-info badge-lg">{{skill.description}}</span></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-9">
+    <tabset class="member-tabset">
+      <tab heading="About {{ mentor.knownAs }}">
+        <h4 class="pt-3">Description</h4>
+        <p>{{ mentor.introduction }}</p>
+        <h4>Looking for</h4>
+        <p>{{ mentor.lookingFor }}</p>
+      </tab>
+      <tab heading="Photos/Screens">
+        <ngx-gallery
+          [options]="galleryOptions"
+          [images]="galleryImages"
+          class="ngx-gallery"
+        ></ngx-gallery>
+      </tab>
+      <tab heading="Messages">
+        <p>Messages will go here</p>
+      </tab>
+    </tabset>
+  </div>
+</div>
