@@ -1,5 +1,5 @@
-
 API/bin/
 API/networkingapp.db-wal
 API/networkingapp.db-shm
 API/obj/Debug/
+API/appsettings.json
