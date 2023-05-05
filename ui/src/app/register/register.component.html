@@ -1,23 +1,60 @@
-<form #registerForm="ngForm" (ngSubmit)="register()" autocomplete="off">
-  <h2 class="text-center text-primary">Sign up</h2>
+<form [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off">
+  <h2 class="text-center text-light">Sign up</h2>
   <hr />
   <div class="mb-3">
     <input
       type="text"
+      [class.is-invalid]="
+        registerForm.get('username')?.errors &&
+        registerForm.get('username')?.touched
+      "
       class="form-control"
-      name="username"
-      [(ngModel)]="model.username"
+      formControlName="username"
       placeholder="Username"
     />
+    <div class="invalid-feedback text-success">Please enter a username</div>
   </div>
-  <div class="mb-3">
+
+  <div class="input-group mb-3">
+    <!-- Change input type to be dynamic -->
     <input
-      type="password"
+      [type]="fieldTextType ? 'text' : 'password'"
       class="form-control"
-      name="password"
-      [(ngModel)]="model.password"
+      formControlName="password"
       placeholder="Password"
     />
+    <div class="input-group-append">
+      <span class="input-group-text">
+        <i
+          class="fa fa-lg mb-1"
+          [ngClass]="{
+            'fa-eye-slash': !fieldTextType,
+            'fa-eye': fieldTextType
+          }"
+          (click)="toggleFieldTextType()"
+        ></i>
+      </span>
+    </div>
+  </div>
+  <div class="input-group mb-3">
+    <input
+      [type]="fieldTextType ? 'text' : 'password'"
+      class="form-control"
+      formControlName="confirmPassword"
+      placeholder="Confirm Password"
+    />
+    <div class="input-group-append">
+      <span class="input-group-text">
+        <i
+          class="fa fa-lg mb-1"
+          [ngClass]="{
+            'fa-eye-slash': !fieldTextType,
+            'fa-eye': fieldTextType
+          }"
+          (click)="toggleFieldTextType()"
+        ></i>
+      </span>
+    </div>
   </div>
   <div class="text-center">
     <button class="btn btn-success me-2" type="submit">Register</button>
