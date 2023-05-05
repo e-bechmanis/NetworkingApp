@@ -22,11 +22,6 @@
         <ng-container *ngIf="accountService.currentUser$ | async">
           <li class="nav-item">
             <a class="nav-link" routerLink="/mentors" routerLinkActive="active"
-              >Matches</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/lists" routerLinkActive="active"
               >Mentors</a
             >
           </li>
@@ -36,11 +31,6 @@
             >
           </li>
         </ng-container>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/errors" routerLinkActive="active"
-            >Errors</a
-          >
-        </li>
       </ul>
 
       <div
@@ -48,8 +38,14 @@
         *ngIf="accountService.currentUser$ | async as user"
         dropdown
       >
-      <img src="{{user.photoUrl || './assets/user.jpg'}}" alt="user default photo" class="rounded-circle">
-        <a class="dropdown-toggle text-dark text-decoration-none ms-2" dropdownToggle
+        <img
+          src="{{ user.photoUrl || './assets/user.jpg' }}"
+          alt="user default photo"
+          class="rounded-circle"
+        />
+        <a
+          class="dropdown-toggle text-dark text-decoration-none ms-2"
+          dropdownToggle
           >Welcome {{ user.username | titlecase }}</a
         >
         <div class="dropdown-menu mt-3" *dropdownMenu>
