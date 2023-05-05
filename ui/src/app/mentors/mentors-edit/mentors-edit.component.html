@@ -4,12 +4,12 @@
   alt="Geometry Png vectors by Lovepik.com"
   class="mentor-idea-img"
 />
-<div class="row" *ngIf="mentor">
+<div class="row mb-4" *ngIf="mentor">
   <div class="col-3">
     <h1>Your profile</h1>
   </div>
   <div class="col-9">
-    <div class="alert alert-info pb-0" *ngIf="editForm.dirty">
+    <div class="alert alert-success py-0" *ngIf="editForm.dirty">
       <p>
         <strong>Information: </strong>You have made changes. Any unsaved changes
         will be lost
@@ -52,11 +52,25 @@
         <h5 class="text-light">I can help with</h5>
         <div *ngFor="let skill of mentor.stack">
           <div *ngIf="skill.canMentor">
-            <h3>
+            <h4>
               <span class="badge bg-info badge-lg">{{
                 skill.description
               }}</span>
-            </h3>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card mt-2 pt-2 pb-2">
+      <div class="card-body">
+        <h5 class="text-light">I am learning</h5>
+        <div *ngFor="let skill of mentor.stack">
+          <div *ngIf="!skill.canMentor">
+            <h4>
+              <span class="badge bg-info badge-lg">{{
+                skill.description
+              }}</span>
+            </h4>
           </div>
         </div>
       </div>
@@ -66,7 +80,7 @@
     <tabset class="member-tabset">
       <tab heading="About {{ mentor.knownAs }}">
         <form #editForm="ngForm" id="editForm" (ngSubmit)="updateMentor()">
-          <h4 class="mt2">Description</h4>
+          <h4 class="mt-2">Description</h4>
           <textarea
             class="form-control"
             [(ngModel)]="mentor.introduction"
@@ -102,7 +116,9 @@
         </form>
       </tab>
       <tab heading="Upload snippets/photos">
-        <app-photo-editor [mentor]="mentor"></app-photo-editor>
+        <div class="mt-2">
+          <app-photo-editor [mentor]="mentor"></app-photo-editor>
+        </div>
       </tab>
     </tabset>
   </div>

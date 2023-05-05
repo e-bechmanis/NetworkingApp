@@ -12,16 +12,11 @@
     border-top: none;
 }
 
-.mentor-det-img{
-    position: fixed;
-    bottom: 0;
-    right: 0;
-}
-
 .mentor-idea-img{
     position: fixed;
     bottom: 0;
     left: 0;
+    z-index: -1;
 }
 
 .ngx-gallery { 
@@ -31,4 +26,13 @@
 
 .card-body{
     color:rgba(0, 0, 0, 0.711) !important;
+}
+
+.d-flex {
+    display: flex;
+    align-items: center;
+  }
+  
+.flex-wrap {
+    flex-wrap: wrap;
 }
